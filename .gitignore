@@ -1,7 +1,7 @@
 # Maven build
 /target/
 
-# TestNG output
+# TestNG output 
 test-output/
 
 # Eclipse files
