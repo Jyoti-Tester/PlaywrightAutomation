@@ -1,1 +1,13 @@
+# Maven build
 /target/
+
+# TestNG output
+test-output/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# Java compiled files
+*.class

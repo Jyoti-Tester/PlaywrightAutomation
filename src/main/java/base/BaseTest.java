@@ -10,26 +10,23 @@ import com.microsoft.playwright.Playwright;
 
 public class BaseTest {
 
-    public Playwright playwright;
-    public Browser browser;
-    public Page page;
+	public Playwright playwright;
+	public Browser browser;
+	public Page page;
 
-    @BeforeMethod
-    public void setup() {
+	@BeforeMethod
+	public void setup() {
 
-        playwright = Playwright.create();
+		playwright = Playwright.create();
 
-        browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions()
-                .setHeadless(false));
+		browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+		page = browser.newContext().newPage();
+	}
 
-        page = browser.newContext().newPage();
-    }
+	@AfterMethod
+	public void tearDown() {
 
-    @AfterMethod
-    public void tearDown() {
-
-        browser.close();
-        playwright.close();
-    }
+		browser.close();
+		playwright.close();
+	}
 }
