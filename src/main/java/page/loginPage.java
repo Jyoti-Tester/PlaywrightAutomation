@@ -2,10 +2,10 @@ package page;
 
 import com.microsoft.playwright.Page;
 
-public class LoginPage {
+public class loginPage {
 	Page page;
 
-	public LoginPage(Page page) {
+	public loginPage(Page page) {
 		this.page = page;
 	}
 
@@ -19,22 +19,22 @@ public class LoginPage {
 		page.navigate(url);
 	}
 
-	public void UserName(String username) {
+	public void userName(String username) {
 		page.fill(usernameField, username);
 	}
 
-	public void Password(String password) {
+	public void password(String password) {
 		page.fill(PasswordField, password);
 	}
 
-	public void LoginBtn() {
+	public void loginBtn() {
 		page.click(LoginbtnField);
 	}
 
-	public void Login(String username, String password) {
-		UserName(username);
-		Password(password);
-		LoginBtn();
+	public void login(String username, String password) {
+		userName(username);
+		password(password);
+		loginBtn();
 		
 		 // Verify login successful
 	  

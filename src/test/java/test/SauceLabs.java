@@ -1,35 +1,44 @@
 package test;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
-import page.Cart_Page;
-import page.LoginPage;
-import page.Product_Page;
+import page.cart_Page;
+import page.loginPage;
+import page.product_Page;
 import utils.ConfigReader;
 
 public class SauceLabs extends BaseTest {
 	@Test
-	public void verifyValidLogin() {
+	public void verifyCompleteOrderFlow() {
 
         ConfigReader config = new ConfigReader();
 
-        LoginPage loginPage = new LoginPage(page);
+        loginPage loginPage = new loginPage(page);
 
         loginPage.navigateTo(config.getUrl());
 
-        loginPage.Login(
+        loginPage.login(
                 config.getUsername(),
                 config.getPassword());
+        Assert.assertTrue(page.url().contains("inventory"),"Login Failed!");
 		
-		Product_Page productPage = new Product_Page(page);
+        //Add items to cart
+		product_Page productPage = new product_Page(page);
 		productPage.items();
-		productPage.NavigateToCart();
+		productPage.navigateToCart();
 		
-		Cart_Page details = new Cart_Page(page);
-		details.Checkout();
-		details.UserDetails("Tester", "A", "5600");
+		//checkout
+		cart_Page details = new cart_Page(page);
+		details.checkout();
+		details.userDetails("Tester", "A", "5600");
 		
+		//Verify order success
+		details.verifyOrderSuccess();
+		
+		Assert.assertTrue(page.locator(".complete-header").isVisible(),"order failed");
+		System.out.println("Complete order flow passed!");
 	}
 
 }

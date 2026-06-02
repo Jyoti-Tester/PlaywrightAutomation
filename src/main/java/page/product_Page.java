@@ -2,10 +2,10 @@ package page;
 
 import com.microsoft.playwright.Page;
 
-public class Product_Page {
+public class product_Page {
 	Page page;
 
-	public Product_Page(Page page) {
+	public product_Page(Page page) {
 		this.page = page;
 	}
 
@@ -19,7 +19,7 @@ public class Product_Page {
 		page.click(item_2);
 	}
 	
-	public void NavigateToCart() {
+	public void navigateToCart() {
 		page.click(cartIcon);
 	}
 }
